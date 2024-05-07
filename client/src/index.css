@@ -1,0 +1,387 @@
+@font-face {
+  font-family: "Formula Condensed Light";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Formula Condensed Light"),
+    url("/src/assets/FormulaCondensed-Light.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Formula Condensed UltraLight";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Formula Condensed UltraLight"),
+    url("/src/assets/FormulaCondensed-UltraLight.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Formula Condensed Bold";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Formula Condensed Bold"),
+    url("/src/assets/FormulaCondensed-Bold.woff") format("woff");
+}
+
+:root {
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 1);
+}
+
+label {
+  font-family: "Formula Condensed Light";
+}
+
+#consulta {
+  margin: 0 auto;
+  text-align: center;
+  height: 90vh;
+  width: 90vw;
+  display: table-cell;
+  vertical-align: middle;
+}
+
+footer {
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+}
+
+#jogos {
+  display: none;
+  text-align: center;
+  align-items: center;
+  flex-direction: column;
+  height: 90vh;
+  width: 90vw;
+}
+
+.form {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0;
+  font-family: Roboto, sans-serif;
+}
+
+.check-jogo {
+  display: flex;
+  align-items: center;
+}
+
+form {
+  margin-top: 0em;
+  unicode-bidi: isolate;
+}
+
+.input {
+  background: transparent;
+  border: 2px solid #fff;
+  color: #fff;
+  font-size: 20px;
+  height: 60px;
+  margin: 20px 5px 20px 0;
+  outline: none;
+  padding: 0 15px;
+}
+
+::placeholder {
+  color: #fff;
+  opacity: 1;
+}
+
+.button {
+  background: #fff;
+  border: 2px solid #fff;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 600;
+  height: 62px;
+  padding: 0 15px;
+  border-radius: 0;
+}
+
+#pesquisar {
+  color: #111111;
+}
+
+.info-jogo {
+  border: 2px solid transparent;
+  border-radius: 1rem;
+  padding: 1rem 2rem;
+  margin-top: 2rem;
+}
+
+.form-checkbox {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+}
+
+.form-checkbox input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #fff;
+  border-radius: 2px;
+}
+
+.form-checkbox:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+.form-checkbox input:checked ~ .checkmark {
+  background-color: #c8102e;
+}
+
+.form-checkbox .checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+  left: 8px;
+  top: 3px;
+  width: 8px;
+  height: 16px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.form-checkbox input:checked ~ .checkmark:after {
+  display: block;
+}
+
+#bg {
+  background: rgba(0, 0, 0, 0.788);
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  place-items: center;
+  overflow: hidden;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+  background: rgba(0, 0, 0, 0.788);
+  background-image: url("/src/assets/estadio-sf-vazio.png");
+  background-repeat: no-repeat;
+  background-position: 50% 0;
+  background-size: cover;
+}
+
+h1 {
+  color: #fff;
+  font-size: 68px;
+  line-height: 72px;
+  margin: 0;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: "Formula Condensed Bold";
+}
+
+h3 {
+  color: #fff;
+  font-size: 46px;
+  line-height: 36px;
+  margin: 0;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: "Formula Condensed Bold";
+}
+
+h2 {
+  font-size: 32px;
+  line-height: 28px;
+  margin: 0 0 10px;
+  padding: 0;
+  text-align: center;
+  text-shadow: 1px 1px 15px #040404;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-family: "Formula Condensed Bold";
+  color: #c8102e;
+}
+
+h4 {
+  font-size: 32px;
+  line-height: 28px;
+  margin: 50px 10px 12px;
+  padding: 0;
+  text-align: center;
+  text-shadow: 1px 1px 15px #040404;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-family: "Formula Condensed Bold";
+  color: #fff;
+}
+
+h6 {
+  font-size: 32px;
+  line-height: 28px;
+  margin: 0 0 20px;
+  padding: 0;
+  text-align: center;
+  text-shadow: 1px 1px 15px #040404;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-family: "Formula Condensed Bold";
+  color: #fff;
+}
+
+h5 {
+  font-size: 32px;
+  line-height: 28px;
+  margin: 0 0 20px;
+  padding: 0 0 80px;
+  text-align: center;
+  text-shadow: 1px 1px 15px #040404;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-family: "Formula Condensed Bold";
+  color: #c8102e;
+}
+
+*,
+:after,
+:before {
+  box-sizing: border-box;
+}
+
+.campeonato {
+  color: #fff;
+  font-family: "Formula Condensed UltraLight";
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  margin-bottom: 5px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.jogo,
+.jogo .time {
+  align-items: center;
+  display: flex;
+}
+
+.jogo {
+  justify-content: center;
+}
+
+.data,
+.separador {
+  color: #fff;
+  font-family: "Formula Condensed UltraLight";
+  text-align: center;
+}
+
+.separador {
+  font-size: 12px;
+  font-weight: 800;
+  padding-top: 10px;
+  width: 30px;
+}
+
+.jogo .time .nome {
+  color: #fff;
+  font-family: "Formula Condensed Bold";
+  font-size: 36px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  letter-spacing: 1px;
+  line-height: 34px;
+  padding-top: 15px;
+  text-transform: uppercase;
+}
+
+small {
+  font-family: "Formula Condensed UltraLight";
+  font-size: 0.8rem;
+  vertical-align: middle;
+  letter-spacing: 0.05rem;
+}
+
+.data {
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  margin: 15px 0;
+  text-transform: uppercase;
+}
+
+.jogo .time.visitante img {
+  height: 55px;
+}
+
+.jogo .time img {
+  height: 60px;
+  margin: 0 15px;
+}
+
+img,
+svg {
+  vertical-align: middle;
+}
+
+.camisas {
+  width: 24.5vw;
+}
+
+.MuiTypography-h6 {
+  font-family: "Formula Condensed Bold" !important;
+  font-size: 30px !important;
+}
+
+.MuiTypography-body1 {
+  font-family: "Formula Condensed UltraLight" !important;
+  font-size: 20px !important;
+}
+
+.MuiBox-root {
+  border-radius: 2% !important;
+}
+
+button {
+  font-family: "Formula Condensed UltraLight" !important;
+  text-transform: none !important;
+  letter-spacing: 0.5px !important;
+  color: #fff !important;
+}
+
+button:hover {
+  background-color: transparent !important;
+}
+
+.campeonato .campeonato__imagem img {
+  height: 55px;
+  margin-bottom: 10px;
+}
+
+@media (max-width: 600px) {
+  footer {
+    left: 0;
+    bottom: 0;
+  }
+
+  .check-jogo {
+    transform: scale(0.8);
+  }
+}
