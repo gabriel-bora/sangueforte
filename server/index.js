@@ -3,9 +3,11 @@ const app = express();
 const { Sequelize, DataTypes } = require("sequelize");
 const cors = require("cors");
 const bp = require("body-parser");
+require("dotenv").config();
 
-const sequelize = new Sequelize("projeto-cap", "root", "root123", {
-  host: "localhost",
+const sequelize = new Sequelize("projeto-cap", "root", "DlInp7fijIPm2ZdUckJ8", {
+  host: "database-sangueforte.cvi642ueg72x.us-east-1.rds.amazonaws.com",
+  port: 3306,
   dialect: "mysql",
 });
 
@@ -15,8 +17,8 @@ app.use(express.urlencoded({ limit: "50mb", extended: true }));
 app.use(bp.json({ limit: "50mb" }));
 app.use(bp.urlencoded({ limit: "50mb", extended: true }));
 
-const Jogo = sequelize.define(
-  "Jogo",
+const jogo = sequelize.define(
+  "jogo",
   {
     idJogo: {
       type: DataTypes.INTEGER,
@@ -35,13 +37,13 @@ const Jogo = sequelize.define(
 );
 
 app.get("/getAllJogos", (req, res) => {
-  sequelize.query("SELECT * FROM JOGOS;").then((data) => {
+  sequelize.query("select * from jogos;").then((data) => {
     res.send(data);
   });
 });
 
-const Usuario = sequelize.define(
-  "Usuario",
+const usuario = sequelize.define(
+  "usuario",
   {
     idUsuario: {
       type: DataTypes.INTEGER,
@@ -59,15 +61,17 @@ const Usuario = sequelize.define(
 );
 
 app.post("/login", (req, res) => {
-  Usuario.findOne({ where: { email: req.body.email } }).then((data) => {
+  usuario.findOne({ where: { email: req.body.email } }).then((data) => {
     if (data == null) {
-      Usuario.create({
-        email: req.body.email,
-      }).then(() => {
-        Usuario.findOne({ where: { email: req.body.email } }).then((data) => {
-          res.send(data);
+      usuario
+        .create({
+          email: req.body.email,
+        })
+        .then(() => {
+          usuario.findOne({ where: { email: req.body.email } }).then((data) => {
+            res.send(data);
+          });
         });
-      });
     } else {
       res.send(data);
     }
@@ -75,7 +79,7 @@ app.post("/login", (req, res) => {
 });
 
 app.post("/updateUser", (req, res) => {
-  Usuario.update(
+  usuario.update(
     { array_jogos: req.body.array_jogos },
     { where: { email: req.body.email } }
   );

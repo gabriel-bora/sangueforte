@@ -30,11 +30,11 @@ function App() {
       })
       .then((response) => {
         let divConsulta = document.querySelector("#consulta") as HTMLDivElement;
-        divConsulta.style.display = "none";
         let divJogos = document.querySelector("#jogos") as HTMLDivElement;
-        divJogos.style.display = "flex";
+        let divLoading = document.querySelector("#loading") as HTMLDivElement;
         let body = document.querySelector("#bg") as HTMLDivElement;
-        body.style.overflowY = "scroll";
+        divConsulta.style.display = "none";
+        divLoading.style.display = "block";
         sessionStorage.setItem("usuario-logado", response.data.email);
         let listaJogosUsuario: Array<number> = [];
         listaJogosUsuario = JSON.parse(response.data.array_jogos);
@@ -75,6 +75,11 @@ function App() {
             divJogo.style.boxShadow = "0 0 10px 3px #c8102e";
           }
         });
+        window.setTimeout(() => {
+          divLoading.style.display = "none";
+          divJogos.style.display = "flex";
+          body.style.overflowY = "scroll";
+        }, 1000);
       });
   }
 
@@ -293,6 +298,9 @@ function App() {
         </form>
         <small>*Utilize sempre o mesmo e-mail</small>
       </div>
+      <div id="loading">
+        <img id="gif-loading" src="/src/assets/loading.gif" alt="" />
+      </div>
       <div id="jogos">
         <h2>TABELA DE JOGOS DO ANO</h2>
         <h3>MARQUE OS JOGOS QUE COMPARECEU</h3>
@@ -335,7 +343,11 @@ function App() {
                   <div className="nome">{value.letras_adv}</div>
                 </div>
               </div>{" "}
-              <div className="data">{dataExtenso(value.data)}</div>
+              <div className="data">
+                {value.time_adv == "ypiranga"
+                  ? "data indefinida"
+                  : dataExtenso(value.data)}
+              </div>
               <small>{jogoValido(value.valido, value.data)}</small>
             </div>
           </div>
