@@ -385,9 +385,13 @@ button:hover {
     transform: scale(0.8);
   }
 
+  #bg {
+    overflow-x: hidden;
+    position: relative;
+  }
+
   #consulta {
     transform: scale(0.8);
-    overflow-x: hidden;
   }
 
   .form {

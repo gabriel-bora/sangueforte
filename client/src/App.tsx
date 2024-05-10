@@ -14,6 +14,7 @@ import gmail from "../src/assets/icons8-gmail.svg";
 import instagram from "../src/assets/icons8-instagram.svg";
 import x from "../src/assets/icons8-x.svg";
 import loading from "../src/assets/loading.gif";
+import camisas from "../src/assets/camisas.png";
 
 function App() {
   const baseUrl: string = "https://sangueforte.onrender.com";
@@ -430,7 +431,7 @@ function App() {
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
             Você atingiu o número de jogos necessário para receber o voucher.
-            <img className="camisas" src="/assets/camisas.png"></img>
+            <img className="camisas" src={camisas}></img>
           </Typography>
         </Box>
       </Modal>
