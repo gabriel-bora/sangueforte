@@ -8,6 +8,8 @@ import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
 
 function App() {
+  const baseUrl: string = "https://sangueforte.onrender.com";
+
   interface Jogo {
     idjogo: number;
     competicao: string;
@@ -25,7 +27,7 @@ function App() {
   function login(e: any) {
     e.preventDefault();
     axios
-      .post("http://localhost:3001/login", {
+      .post(`${baseUrl} + /login`, {
         email: email,
       })
       .then((response) => {
@@ -86,13 +88,13 @@ function App() {
   const [listJogos, setListJogos] = useState();
 
   useEffect(() => {
-    axios.get("http://localhost:3001/getAllJogos").then((response) => {
+    axios.get(`${baseUrl} + /getAllJogos`).then((response) => {
       setListJogos(response.data[0]);
     });
     document.onvisibilitychange = () => {
       let usuarioLogado: string = sessionStorage.getItem("usuario-logado")!;
       if (document.visibilityState === "hidden") {
-        axios.post("http://localhost:3001/updateUser", {
+        axios.post(`${baseUrl} + /updateUser`, {
           email: usuarioLogado,
           array_jogos: sessionStorage.getItem("array_jogos"),
         });
