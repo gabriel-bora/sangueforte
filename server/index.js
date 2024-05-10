@@ -92,5 +92,9 @@ app.post("/updateUser", (req, res) => {
 const port = process.env.PORT || 3001;
 
 app.get("/", (req, res) => {
-  return res.json("Hello World!");
+  res.send("Hello World!");
+});
+
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`);
 });
