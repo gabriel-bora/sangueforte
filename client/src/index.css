@@ -32,12 +32,13 @@ label {
 }
 
 #consulta {
-  margin: 0 auto;
   text-align: center;
   height: 90vh;
   width: 90vw;
-  display: table-cell;
-  vertical-align: middle;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 footer {
@@ -417,4 +418,11 @@ iframe {
   position: absolute;
   top: 0;
   left: 0;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
