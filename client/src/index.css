@@ -384,6 +384,10 @@ button:hover {
   .check-jogo {
     transform: scale(0.8);
   }
+
+  #consulta {
+    transform: scale(0.8);
+  }
 }
 
 #loading {
