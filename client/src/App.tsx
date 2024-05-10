@@ -301,7 +301,7 @@ function App() {
         <small>*Utilize sempre o mesmo e-mail</small>
       </div>
       <div id="loading">
-        <img id="gif-loading" src="/src/assets/loading.gif" alt="" />
+        <img id="gif-loading" src="/dist/assets/loading.gif" alt="" />
       </div>
       <div id="jogos">
         <h2>TABELA DE JOGOS DO ANO</h2>
@@ -324,7 +324,7 @@ function App() {
             <div className="info-jogo" id={"info-jogo" + value.idjogo}>
               <div className="campeonato">
                 <div className="campeonato__imagem">
-                  <img src={"/src/assets/" + value.competicao + ".png"}></img>
+                  <img src={"/dist/assets/" + value.competicao + ".png"}></img>
                 </div>{" "}
                 <span>{switchCompeticao(value.competicao)} 2024</span>
               </div>{" "}
@@ -386,13 +386,13 @@ function App() {
         >
           <Typography sx={{ p: 2 }}>
             <a href="https://www.instagram.com/gabriel_bora" target="_blank">
-              <img src="/src/assets/icons8-instagram.svg" alt="" />
+              <img src="/dist/assets/icons8-instagram.svg" alt="" />
             </a>
             <a href="https://twitter.com/gabriel_bora" target="_blank">
-              <img src="/src/assets/icons8-x.svg" alt="" />
+              <img src="/dist/assets/icons8-x.svg" alt="" />
             </a>
             <a href="mailto:gabriel.bora.10@gmail.com" target="_blank">
-              <img src="/src/assets/icons8-gmail.svg" alt="" />
+              <img src="/dist/assets/icons8-gmail.svg" alt="" />
             </a>
           </Typography>
         </Popover>
