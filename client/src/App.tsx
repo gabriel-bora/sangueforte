@@ -27,7 +27,7 @@ function App() {
   function login(e: any) {
     e.preventDefault();
     axios
-      .post(`${baseUrl}/login`, {
+      .post(baseUrl + "/login", {
         email: email,
       })
       .then((response) => {
@@ -88,13 +88,13 @@ function App() {
   const [listJogos, setListJogos] = useState();
 
   useEffect(() => {
-    axios.get(`${baseUrl}/getAllJogos`).then((response) => {
+    axios.get(baseUrl + "/getAllJogos").then((response) => {
       setListJogos(response.data[0]);
     });
     document.onvisibilitychange = () => {
       let usuarioLogado: string = sessionStorage.getItem("usuario-logado")!;
       if (document.visibilityState === "hidden") {
-        axios.post(`${baseUrl}/updateUser`, {
+        axios.post(baseUrl + "/updateUser", {
           email: usuarioLogado,
           array_jogos: sessionStorage.getItem("array_jogos"),
         });
