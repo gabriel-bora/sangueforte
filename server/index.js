@@ -3,13 +3,17 @@ const app = express();
 const { Sequelize, DataTypes } = require("sequelize");
 const cors = require("cors");
 const bp = require("body-parser");
-require("dotenv").config();
 
-const sequelize = new Sequelize("projeto-cap", "root", "DlInp7fijIPm2ZdUckJ8", {
-  host: "database-sangueforte.cvi642ueg72x.us-east-1.rds.amazonaws.com",
-  port: 3306,
-  dialect: "mysql",
-});
+const sequelize = new Sequelize(
+  process.env.MYSQLDATABASE,
+  process.env.MYSQLUSER,
+  process.env.MYSQLPASSWORD,
+  {
+    host: process.env.MYSQLHOST,
+    port: 3306,
+    dialect: "mysql",
+  }
+);
 
 app.use(cors());
 app.use(express.json({ limit: "50mb" }));
