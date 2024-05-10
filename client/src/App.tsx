@@ -70,7 +70,7 @@ function App() {
             "#label-checkbox" + value.idjogo
           ) as HTMLLabelElement;
           const data = new Date(value.data);
-          const hoje = new Date("2024-10-20");
+          const hoje = new Date();
           if (value.valido === "n" || data >= hoje) {
             inputSeletor.disabled = true;
             formCheckbox.style.cursor = "not-allowed";
