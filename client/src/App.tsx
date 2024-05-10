@@ -6,14 +6,14 @@ import Popover from "@mui/material/Popover";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
-import brasileiro from "assets/brasileiro.png";
-import cdb from "assets/cdb.png";
-import paranaense from "assets/paranaense.png";
-import sula from "assets/sula.png";
-import gmail from "assets/icons8-gmail.svg";
-import instagram from "assets/icons8-instagram.svg";
-import x from "assets/icons8-x.svg";
-import loading from "assets/loading.png";
+import brasileiro from "../src/assets/brasileiro.png";
+import cdb from "../src/assets/cdb.png";
+import paranaense from "../src/assets/paranaense.png";
+import sula from "../src/assets/sula.png";
+import gmail from "../src/assets/icons8-gmail.svg";
+import instagram from "../src/assets/icons8-instagram.svg";
+import x from "../src/assets/icons8-x.svg";
+import loading from "../src/assets/loading.png";
 
 function App() {
   const baseUrl: string = "https://sangueforte.onrender.com";
