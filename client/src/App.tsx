@@ -6,6 +6,14 @@ import Popover from "@mui/material/Popover";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
+import brasileiro from "assets/brasileiro.png";
+import cdb from "assets/cdb.png";
+import paranaense from "assets/paranaense.png";
+import sula from "assets/sula.png";
+import gmail from "assets/icons8-gmail.svg";
+import instagram from "assets/icons8-instagram.svg";
+import x from "assets/icons8-x.svg";
+import loading from "assets/loading.png";
 
 function App() {
   const baseUrl: string = "https://sangueforte.onrender.com";
@@ -165,6 +173,19 @@ function App() {
     }
   }
 
+  function logoCompeticao(competicao: string) {
+    switch (competicao) {
+      case "brasileiro":
+        return brasileiro;
+      case "cdb":
+        return cdb;
+      case "paranaense":
+        return paranaense;
+      case "sula":
+        return sula;
+    }
+  }
+
   function dataExtenso(data: string) {
     const date = new Date(data);
     let diaSemana = date.getDay();
@@ -301,7 +322,7 @@ function App() {
         <small>*Utilize sempre o mesmo e-mail</small>
       </div>
       <div id="loading">
-        <img id="gif-loading" src="/assets/loading.gif" alt="" />
+        <img id="gif-loading" src={loading} alt="" />
       </div>
       <div id="jogos">
         <h2>TABELA DE JOGOS DO ANO</h2>
@@ -324,7 +345,7 @@ function App() {
             <div className="info-jogo" id={"info-jogo" + value.idjogo}>
               <div className="campeonato">
                 <div className="campeonato__imagem">
-                  <img src={"/assets/" + value.competicao + ".png"}></img>
+                  <img src={logoCompeticao(value.competicao)}></img>
                 </div>{" "}
                 <span>{switchCompeticao(value.competicao)} 2024</span>
               </div>{" "}
@@ -386,13 +407,13 @@ function App() {
         >
           <Typography sx={{ p: 2 }}>
             <a href="https://www.instagram.com/gabriel_bora" target="_blank">
-              <img src="/assets/icons8-instagram.svg" alt="" />
+              <img src={instagram} alt="" />
             </a>
             <a href="https://twitter.com/gabriel_bora" target="_blank">
-              <img src="/assets/icons8-x.svg" alt="" />
+              <img src={x} alt="" />
             </a>
             <a href="mailto:gabriel.bora.10@gmail.com" target="_blank">
-              <img src="/assets/icons8-gmail.svg" alt="" />
+              <img src={gmail} alt="" />
             </a>
           </Typography>
         </Popover>
