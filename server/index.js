@@ -91,6 +91,6 @@ app.post("/updateUser", (req, res) => {
 
 const port = process.env.PORT || 3001;
 
-app.listen(port, () => {
-  console.log("Rodando servidor");
+app.get("/", (req, res) => {
+  return res.json("Hello World!");
 });
