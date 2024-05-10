@@ -13,7 +13,7 @@ import sula from "../src/assets/sula.png";
 import gmail from "../src/assets/icons8-gmail.svg";
 import instagram from "../src/assets/icons8-instagram.svg";
 import x from "../src/assets/icons8-x.svg";
-import loading from "../src/assets/loading.png";
+import loading from "../src/assets/loading.gif";
 
 function App() {
   const baseUrl: string = "https://sangueforte.onrender.com";
