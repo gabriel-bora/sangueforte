@@ -387,6 +387,11 @@ button:hover {
 
   #consulta {
     transform: scale(0.8);
+    overflow-x: hidden;
+  }
+
+  .form {
+    flex-direction: column;
   }
 }
 
