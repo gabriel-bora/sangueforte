@@ -33,65 +33,103 @@ function App() {
 
   const [jogosUsuario, setJogosUsuario] = useState<number>(0);
 
+  const [open, setOpen] = useState(false);
+  const handleClose = () => setOpen(false);
+
+  const [open2, setOpen2] = useState(false);
+  const handleClose2 = () => setOpen2(false);
+
+  const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
+
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClosePopover = () => {
+    setAnchorEl(null);
+  };
+
+  const openPopover = Boolean(anchorEl);
+  const id = open ? "simple-popover" : undefined;
+
   function login(e: any) {
     e.preventDefault();
-    axios
-      .post(baseUrl + "/login", {
-        email: email,
-      })
-      .then((response) => {
-        let divConsulta = document.querySelector("#consulta") as HTMLDivElement;
-        let divJogos = document.querySelector("#jogos") as HTMLDivElement;
-        let divLoading = document.querySelector("#loading") as HTMLDivElement;
-        let body = document.querySelector("#bg") as HTMLDivElement;
-        divConsulta.style.display = "none";
-        divLoading.style.display = "block";
-        sessionStorage.setItem("usuario-logado", response.data.email);
-        let listaJogosUsuario: Array<number> = [];
-        listaJogosUsuario = JSON.parse(response.data.array_jogos);
-        sessionStorage.setItem(
-          "array_jogos",
-          JSON.stringify(listaJogosUsuario)
-        );
-        setJogosUsuario(
-          JSON.parse(sessionStorage.getItem("array_jogos")!).length
-        );
-        listaJogos.map((value) => {
-          let inputSeletor = document.querySelector(
-            "#seletor-jogo" + value.idjogo
-          ) as HTMLInputElement;
-          let escudoCAP = document.querySelector(
-            "#escudocap" + value.idjogo
-          ) as HTMLImageElement;
-          let escudoADV = document.querySelector(
-            "#escudoadv" + value.idjogo
-          ) as HTMLImageElement;
-          let formCheckbox = document.querySelector(
-            "#label-checkbox" + value.idjogo
-          ) as HTMLLabelElement;
-          const data = new Date(value.data);
-          const hoje = new Date();
-          if (value.valido === "n" || data >= hoje) {
-            inputSeletor.disabled = true;
-            formCheckbox.style.cursor = "not-allowed";
-            escudoCAP.style.filter = "grayscale(1)";
-            escudoADV.style.filter = "grayscale(1)";
-          }
-          let divJogo = document.querySelector(
-            "#info-jogo" + value.idjogo
+    let usuario = email.substring(0, email.indexOf("@"));
+    let dominio = email.substring(email.indexOf("@") + 1, email.length);
+
+    if (
+      usuario.length >= 1 &&
+      dominio.length >= 3 &&
+      usuario.search("@") == -1 &&
+      dominio.search("@") == -1 &&
+      usuario.search(" ") == -1 &&
+      dominio.search(" ") == -1 &&
+      dominio.search(".") != -1 &&
+      dominio.indexOf(".") >= 1 &&
+      dominio.lastIndexOf(".") < dominio.length - 1
+    ) {
+      axios
+        .post(baseUrl + "/login", {
+          email: email,
+        })
+        .then((response) => {
+          let divConsulta = document.querySelector(
+            "#consulta"
           ) as HTMLDivElement;
-          if (listaJogosUsuario.indexOf(value.idjogo) != -1) {
-            inputSeletor.checked = true;
-            divJogo.style.border = "2px solid #c8102e";
-            divJogo.style.boxShadow = "0 0 10px 3px #c8102e";
-          }
+          let divJogos = document.querySelector("#jogos") as HTMLDivElement;
+          let divLoading = document.querySelector("#loading") as HTMLDivElement;
+          let body = document.querySelector("#bg") as HTMLDivElement;
+          divConsulta.style.display = "none";
+          divLoading.style.display = "block";
+          sessionStorage.setItem("usuario-logado", response.data.email);
+          let listaJogosUsuario: Array<number> = [];
+          listaJogosUsuario = JSON.parse(response.data.array_jogos);
+          sessionStorage.setItem(
+            "array_jogos",
+            JSON.stringify(listaJogosUsuario)
+          );
+          setJogosUsuario(
+            JSON.parse(sessionStorage.getItem("array_jogos")!).length
+          );
+          listaJogos.map((value) => {
+            let inputSeletor = document.querySelector(
+              "#seletor-jogo" + value.idjogo
+            ) as HTMLInputElement;
+            let escudoCAP = document.querySelector(
+              "#escudocap" + value.idjogo
+            ) as HTMLImageElement;
+            let escudoADV = document.querySelector(
+              "#escudoadv" + value.idjogo
+            ) as HTMLImageElement;
+            let formCheckbox = document.querySelector(
+              "#label-checkbox" + value.idjogo
+            ) as HTMLLabelElement;
+            const data = new Date(value.data);
+            const hoje = new Date();
+            if (value.valido === "n" || data >= hoje) {
+              inputSeletor.disabled = true;
+              formCheckbox.style.cursor = "not-allowed";
+              escudoCAP.style.filter = "grayscale(1)";
+              escudoADV.style.filter = "grayscale(1)";
+            }
+            let divJogo = document.querySelector(
+              "#info-jogo" + value.idjogo
+            ) as HTMLDivElement;
+            if (listaJogosUsuario.indexOf(value.idjogo) != -1) {
+              inputSeletor.checked = true;
+              divJogo.style.border = "2px solid #c8102e";
+              divJogo.style.boxShadow = "0 0 10px 3px #c8102e";
+            }
+          });
+          window.setTimeout(() => {
+            divLoading.style.display = "none";
+            divJogos.style.display = "flex";
+            body.style.overflowY = "scroll";
+          }, 1000);
         });
-        window.setTimeout(() => {
-          divLoading.style.display = "none";
-          divJogos.style.display = "flex";
-          body.style.overflowY = "scroll";
-        }, 1000);
-      });
+    } else {
+      setOpen2(true);
+    }
   }
 
   const [listJogos, setListJogos] = useState();
@@ -121,9 +159,6 @@ function App() {
       return new Date(a.data).getTime() - new Date(b.data).getTime();
     });
   }
-
-  const [open, setOpen] = useState(false);
-  const handleClose = () => setOpen(false);
 
   function selecionar_jogo(id: number) {
     let jogosChecked: Array<number> =
@@ -289,19 +324,6 @@ function App() {
     p: 4,
   };
 
-  const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
-
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClosePopover = () => {
-    setAnchorEl(null);
-  };
-
-  const openPopover = Boolean(anchorEl);
-  const id = open ? "simple-popover" : undefined;
-
   return (
     <>
       <div id="consulta">
@@ -322,6 +344,18 @@ function App() {
         </form>
         <small>*Utilize sempre o mesmo e-mail</small>
       </div>
+      <Modal
+        open={open2}
+        onClose={handleClose2}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+            Por favor, insira um <span id="email">e-mail</span>!
+          </Typography>
+        </Box>
+      </Modal>
       <div id="loading">
         <img id="gif-loading" src={loading} alt="" />
       </div>
