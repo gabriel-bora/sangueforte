@@ -401,11 +401,7 @@ function App() {
                   <div className="nome">{value.letras_adv}</div>
                 </div>
               </div>{" "}
-              <div className="data">
-                {value.time_adv == "ypiranga"
-                  ? "data indefinida"
-                  : dataExtenso(value.data)}
-              </div>
+              <div className="data">{dataExtenso(value.data)}</div>
               <small>{jogoValido(value.valido, value.data)}</small>
             </div>
           </div>
