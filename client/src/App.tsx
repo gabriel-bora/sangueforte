@@ -33,9 +33,7 @@ function App() {
 
   //   const [jogosUsuario, setJogosUsuario] = useState<number>(0);
 
-  const [open, setOpen] = useState(false);
-
-  setOpen(false);
+  // const [open, setOpen] = useState(false);
 
   // const handleClose = () => setOpen(false);
   //   const [open2, setOpen2] = useState(false);
@@ -52,7 +50,7 @@ function App() {
   };
 
   const openPopover = Boolean(anchorEl);
-  const id = open ? "simple-popover" : undefined;
+  const id = undefined;
 
   //   function login(e: any) {
   //     e.preventDefault();
