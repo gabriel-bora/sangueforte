@@ -1,5 +1,5 @@
 import "./App.css";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 // import axios from "axios";
 // import Box from "@mui/material/Box";
 import Popover from "@mui/material/Popover";
@@ -34,8 +34,10 @@ function App() {
   //   const [jogosUsuario, setJogosUsuario] = useState<number>(0);
 
   const [open, setOpen] = useState(false);
-  const handleClose = () => setOpen(false);
 
+  setOpen(false);
+
+  // const handleClose = () => setOpen(false);
   //   const [open2, setOpen2] = useState(false);
   //   const handleClose2 = () => setOpen2(false);
 
@@ -471,8 +473,8 @@ function App() {
   return (
     <>
       <div id="consulta">
-        <h2>TABELA DE JOGOS DO ANO</h2>
-        <h1>CONSULTE SUA FREQUÊNCIA</h1>
+        <h2>EI, PETRAGLIA, DIRETORIA E ELENCO DE 2024:</h2>
+        <h1>PARABÉNS PELA QUEDA!</h1>
       </div>
       <footer>
         <Button onClick={handleClick}>Desenvolvido por GB</Button>
